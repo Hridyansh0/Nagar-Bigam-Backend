@@ -2,15 +2,6 @@ require("dotenv").config();
 const pool = require("../config/database");
 const nodemailer = require("nodemailer");
 
-// ── Twilio client (real SMS) ─────────────────────────────────────────────────
-// let twilioClient = null;
-// try {
-//   const twilio = require("twilio");
-//   if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_ACCOUNT_SID.startsWith("AC")) {
-//     twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-//   }
-// } catch (_) {}
-
 // ── Generate 6-digit numeric OTP ────────────────────────────────────────────
 const generateOTP = () =>
   Math.floor(100000 + Math.random() * 900000).toString();
@@ -48,31 +39,6 @@ const sendOTP = async (user_email, otp) => {
   await transporter.sendMail(mailOptions);
 
 };
-
-// const sendOTP = async (phone, otp) => {
-//   const text =
-//     `Your OTP for Complaint Portal is: ${otp}. ` +
-//     `Valid for ${process.env.OTP_EXPIRY_MINUTES || 10} minutes. Do NOT share.`;
-
-//     console.log(`Attempting to send OTP to +91${phone}...`); // debug for working
-
-//   if (twilioClient) {
-//     await twilioClient.messages.create({
-//       body: text,
-//       from: process.env.TWILIO_PHONE_NUMBER,
-//       to: `+91${phone}`,
-//     });
-//     console.log(`📱  SMS sent to +91${phone}`);
-//   } else {
-//     // Development fallback — print to terminal
-//     console.log(`\n${"─".repeat(40)}`);
-//     console.log(`📲  [DEV] OTP for ${phone} : ${otp}`);
-//     console.log(`${"─".repeat(40)}\n`);
-//   }
-// };
-
-// ── Store OTP in DB (invalidates previous unused OTPs for same phone) ───────
-
 
 
 

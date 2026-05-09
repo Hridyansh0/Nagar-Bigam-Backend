@@ -22,10 +22,6 @@ router.get("/categories", getCategories);
 // GET  /api/complaints/track/:trackId       — public
 router.get("/track/:trackId", trackIdParam, validate, trackComplaint);
 
-// GET  /api/complaints/my                   — private, paginated
-// router.get("/my", authenticate, paginationRules, validate, getMyComplaints);
-
-// POST /api/complaints                      — private, multipart/form-data
 router.post(
   "/",
   // authenticate,
