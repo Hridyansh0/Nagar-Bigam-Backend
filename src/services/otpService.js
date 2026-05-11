@@ -8,11 +8,22 @@ const generateOTP = () =>
 
 // ── Send OTP via Twilio SMS (falls back to console log in dev) ───────────────
 
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: "mohsin06388@gmail.com",
+//     pass: "iter eppo nnti cvya", // NOT your real password
+//   },
+// });
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  family: 4,
   auth: {
     user: "mohsin06388@gmail.com",
-    pass: "iter eppo nnti cvya", // NOT your real password
+    pass: "iter eppo nnti cvya",
   },
 });
 
